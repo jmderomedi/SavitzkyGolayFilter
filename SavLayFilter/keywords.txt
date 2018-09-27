@@ -1,0 +1,3 @@
+SavGolFilter	KEYWORD1
+quadCubicSmooth KEYWORD2
+_quadCubicSmoothCalc KEYWORD2
