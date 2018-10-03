@@ -27,7 +27,7 @@ float SavLayFilter::quadCubicSmooth(int8_t windowSize, float inputValue) {
     switch (windowSize) {
       case 5:
         _arrayPointer = 0;
-        _smoothedValue = quadCubicSmoothCalc(windowSize, _toBeSmoothedArray[]);
+        _smoothedValue = quadCubicSmoothCalc(windowSize, *_toBeSmoothedArray[]);
         for (j; j <= windowSize; j++) {
           *_toBeSmoothedArray[i - 1] = *_toBeSmoothedArray[i];
         }
@@ -35,16 +35,16 @@ float SavLayFilter::quadCubicSmooth(int8_t windowSize, float inputValue) {
         break;
       case 7:
         _arrayPointer = 1;
-        _smoothedValue = quadCubicSmoothCalc( windowSize, _toBeSmoothedArray[]);
-        for (i; i <= windowSize; i++) {
+        _smoothedValue = quadCubicSmoothCalc( windowSize, *_toBeSmoothedArray[]);
+        for (j; j <= windowSize; j++) {
           *_toBeSmoothedArray[i - 1] = *_toBeSmoothedArray[i];
         }
         *_toBeSmoothedArray[windowSize - 1] = inputValue;
         break;
       case 9:
         _arrayPointer = 2;
-        _smoothedValue = quadCubicSmoothCalc( windowSize, _toBeSmoothedArray[]);
-        for (i; i <= windowSize; i++) {
+        _smoothedValue = quadCubicSmoothCalc( windowSize, *_toBeSmoothedArray[]);
+        for (j; j <= windowSize; j++) {
           *_toBeSmoothedArray[i - 1] = *_toBeSmoothedArray[i];
         }
         *_toBeSmoothedArray[windowSize - 1] = inputValue;
@@ -52,7 +52,7 @@ float SavLayFilter::quadCubicSmooth(int8_t windowSize, float inputValue) {
       case 11:
         _arrayPointer = 3;
         _smoothedValue = quadCubicSmoothCalc( windowSize, _toBeSmoothedArray[]);
-        for (i; i <= windowSize; i++) {
+        for (j; j <= windowSize; j++) {
           *_toBeSmoothedArray[i - 1] = *_toBeSmoothedArray[i];
         }
         *_toBeSmoothedArray[windowSize - 1] = inputValue;
@@ -60,7 +60,7 @@ float SavLayFilter::quadCubicSmooth(int8_t windowSize, float inputValue) {
       case 13:
         _arrayPointer = 4;
         _smoothedValue = quadCubicSmoothCalc( windowSize, _toBeSmoothedArray[]);
-        for (i; i <= windowSize; i++) {
+        for (j; j <= windowSize; j++) {
           *_toBeSmoothedArray[i - 1] = *_toBeSmoothedArray[i];
         }
         *_toBeSmoothedArray[windowSize - 1] = inputValue;
@@ -68,7 +68,7 @@ float SavLayFilter::quadCubicSmooth(int8_t windowSize, float inputValue) {
       case 15:
         _arrayPointer = 5;
         _smoothedValue = quadCubicSmoothCalc( windowSize, _toBeSmoothedArray[]);
-        for (i; i <= windowSize; i++) {
+        for (j; j <= windowSize; j++) {
           *_toBeSmoothedArray[i - 1] = *_toBeSmoothedArray[i];
         }
         *_toBeSmoothedArray[windowSize - 1] = inputValue;
@@ -76,7 +76,7 @@ float SavLayFilter::quadCubicSmooth(int8_t windowSize, float inputValue) {
       case 17:
         _arrayPointer = 6;
         _smoothedValue = quadCubicSmoothCalc( windowSize, _toBeSmoothedArray[]);
-        for (i; i <= windowSize; i++) {
+        for (j; j <= windowSize; j++) {
           *_toBeSmoothedArray[i - 1] = *_toBeSmoothedArray[i];
         }
         *_toBeSmoothedArray[windowSize - 1] = inputValue;
@@ -84,7 +84,7 @@ float SavLayFilter::quadCubicSmooth(int8_t windowSize, float inputValue) {
       case 19:
         _arrayPointer = 7;
         _smoothedValue = quadCubicSmoothCalc( windowSize, _toBeSmoothedArray[]);
-        for (i; i <= windowSize; i++) {
+        for (j; j <= windowSize; j++) {
           *_toBeSmoothedArray[i - 1] = *_toBeSmoothedArray[i];
         }
         *_toBeSmoothedArray[windowSize - 1] = inputValue;
@@ -92,7 +92,7 @@ float SavLayFilter::quadCubicSmooth(int8_t windowSize, float inputValue) {
       case 21:
         _arrayPointer = 8;
         _smoothedValue = quadCubicSmoothCalc( windowSize, _toBeSmoothedArray[]);
-        for (i; i <= windowSize; i++) {
+        for (j; j <= windowSize; j++) {
           *_toBeSmoothedArray[i - 1] = *_toBeSmoothedArray[i];
         }
         *_toBeSmoothedArray[windowSize - 1] = inputValue;
@@ -100,7 +100,7 @@ float SavLayFilter::quadCubicSmooth(int8_t windowSize, float inputValue) {
       case 23:
         _arrayPointer = 9;
         _smoothedValue = quadCubicSmoothCalc( windowSize, _toBeSmoothedArray[]);
-        for (i; i <= windowSize; i++) {
+        for (j; j <= windowSize; j++) {
           *_toBeSmoothedArray[i - 1] = *_toBeSmoothedArray[i];
         }
         *_toBeSmoothedArray[windowSize - 1] = inputValue;
@@ -108,7 +108,7 @@ float SavLayFilter::quadCubicSmooth(int8_t windowSize, float inputValue) {
       case 25:
         _arrayPointer = 10;
         _smoothedValue = quadCubicSmoothCalc( windowSize, _toBeSmoothedArray[]);
-        for (i; i <= windowSize; i++) {
+        for (j; j <= windowSize; j++) {
           *_toBeSmoothedArray[i - 1] = *_toBeSmoothedArray[i];
         }
         *_toBeSmoothedArray[windowSize - 1] = inputValue;
