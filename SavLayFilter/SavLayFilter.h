@@ -8,8 +8,12 @@ class SavLayFilter {
   public:
     SavLayFilter();
     float quadCubicSmooth(int8_t sizeOfWindow, float inputVal);
-    
+    float testingArray[10];
+    void resetValues(){
+        _arrayPointer = 0;
+    };
   private:
+    void _resetValues();
     float _quadCubicSmoothCalc(int8_t windowSize, float windowArray[]);
     int8_t _arrayPointer;
     int8_t _fillArrayCount;
