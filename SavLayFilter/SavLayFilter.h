@@ -6,11 +6,16 @@
 class SavLayFilter {
 
   public:
+    // Constructor
     SavLayFilter();
     float quadCubicSmooth(int8_t sizeOfWindow, float inputVal);
     float testingArray[10];
+
+    //Resets the arrayPointer so it gets refilled with data from start
     void resetValues(){
         _arrayPointer = 0;
+        _sum = 0;
+        _smoothedValue = 0;
     };
   private:
     void _resetValues();
@@ -20,7 +25,7 @@ class SavLayFilter {
     float _sum;
     float _smoothedValue;
     float _toBeSmoothedArray[13]; //Array that will be filled by quadCubicSmooth with inputValues
-    int _quadCubicSmoothConvolute[11][13] = {
+    int _quadCubicSmoothConvolute[11][13] = {   //Contains the convolutes for each window size
       { -3, 12, 17, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},    //Window size 5
       { -2, 3, 6, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0},    //Window size 7
       { -21, 14, 39, 54, 59, 0, 0, 0, 0, 0, 0, 0, 0},   //Window size 9
