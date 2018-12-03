@@ -28,15 +28,15 @@ float SavLayFilter::smoothing(int8_t windowSize, float inputValue, int8_t convol
     _normalizationFactor = _quadCubicSmoothNormal;
     break;
     case 1:
-    _convoluteTable = _quadCubicSmooth;
-    _normalizationFactor = _quadCubicSmoothNormal;
+    _convoluteTable =_quadFirstDerive;
+    _normalizationFactor = _quadFirstDeriveNormal;
     break;
     case 2:
-    _convoluteTable = _quadCubicSmooth;
+    _convoluteTable = _quarticQuinticSmooth;
     _normalizationFactor = _quadCubicSmoothNormal;
     break;
     case 3:
-    _convoluteTable = _quadCubicSmooth;
+    _convoluteTable = _cubicQuarticFirstDerive;
     _normalizationFactor = _quadCubicSmoothNormal;
     break;
     case 4:
