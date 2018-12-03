@@ -16,7 +16,7 @@ float SavLayFilter::_calculating(int8_t windowSize, float inputArray[]) {
     _sum += (inputArray[i] + inputArray[(windowSize - 1) - i]) * (_convoluteTable[_arrayPointer][i]);
   }
   _sum += inputArray[(windowSize) / 2] * (_convoluteTable[_arrayPointer][(windowSize) / 2]);
-  _sum = (_sum) / (_normalizationFactor[_arrayPointer][0]);
+  _sum = (_sum) / ( _normalizationFactor[_arrayPointer][0]);
 
   return _sum;
 }
