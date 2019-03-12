@@ -1,8 +1,13 @@
-#include <SavLayFilter.h>
 /**
-   License stuff
+   SavLayFilter Basic Example
+   Creates a generic sin wave and adds noise from a floating analogpin
+   Two filters are then run on it with a large windowsize and a small windowsize
+   It is best to open Serial plotter for best results
    Author: James Deromedi
+   License: MIT License
 */
+
+#include <SavLayFilter.h>
 
 float phase = 0.0;
 float twopi = 3.14159 * 2;
@@ -15,10 +20,12 @@ int convoluteTable = 0;
 SavLayFilter smallFilter (&outputValue, 0, 5);             //Cubic smoothing with windowsize of 5
 SavLayFilter largeFilter (&outputValue, 0, 25);            //Cubic smoothing with windowsize of 25
 
+//==================================================================================================
 void setup() {
   Serial.begin(9800);
-}
+}//END SETUP
 
+//==================================================================================================
 void loop() {
   float noise = analogRead(A1);                             //Creates random noise from a floating pin
   outputValue = (sin(phase) * 1000.0 + 2000.0) + noise;     //Creates sin wave pattern with A = 1000 and shifted up by 2000
@@ -29,7 +36,7 @@ void loop() {
 
   Serial.print(outputValue);                                //Raw Value [Blue line]
   Serial.print(",");
-  Serial.print(smallFilter.compute());                    //Smoothed value of smaller window [Orange line]
+  Serial.print(smallFilter.Compute());                      //Smoothed value of smaller window [Orange line]
   Serial.print(",");
-  Serial.println(largeFilter.compute());                  //Smoothed value of smaller window [Red line]
-}
+  Serial.println(largeFilter.Compute());                    //Smoothed value of smaller window [Red line]
+}//END LOOP

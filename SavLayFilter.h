@@ -1,3 +1,10 @@
+/**
+ * Arduino Savitzky Golay Library - Version 1.0.1
+ * by James Deromedi <jmderomedi@gmail.com>
+ *
+ * This Library is licensed under the MIT License
+*/
+
 #ifndef SavLayFilter_h
 #define SavLayFilter_h
 #define LIBRARY_VERSION 1.2.1
@@ -6,13 +13,14 @@ class SavLayFilter {
 
 public:
 //=======================================================================================
-  SavLayFilter(double*, int, int);         //*Constructor. Generic function, calls cubic 
-                                                //smoothing table of window size 5
-                                                //Links the input to the filter                       
-  float smoothing();                            //Calculates the filter specified in the constructor
+  SavLayFilter(double*, int, int);  //*Constructor. Generic function, calls cubic 
+                                    //smoothing table of window size 5
+                                    //Links the input to the filter
 
-  void resetValues(){                           //Resets entire filter. Be careful when calling
-    for (int i = 0; i < 13; i++){               //Since it will ruin current filtering
+  float Compute();                  //Calculates the filter specified in the constructor
+
+  void resetValues(){               //Resets entire filter. Be careful when calling
+    for (int i = 0; i < 13; i++){   //Since it will ruin current filtering
       _toBeSmoothedArray[i] = 0;
     }
     _fillArrayCount = 0;
@@ -20,45 +28,43 @@ public:
     _smoothedValue = 0;
     _arrayPointer = 0;
   };
+
 //=======================================================================================
 private:
-  double *myInput;                 //Creates the link to the input, freeing the user from having to specify
-
-  int myWindowSize;             //Saves the values inputed by the user
-  int myConvoluteTable;
-
-  //void _resetValues();
   float _calculating(double windowArray[]);   //Internally used to compute
-                                                                //actually filtered value
+                                              //actually filtered value
+  double *myInput;                            //Creates the link to the input, freeing the user from having to specify
+  int myWindowSize;                           //Saves the values inputed by the user
 
-  double  (*_convoluteTable)[14];              //Used to internally reference which table to use
-  double* _normalizationFactor;           //Used to internally reference which normalization factor
+  double  (*_convoluteTable)[14];             //Used to internally reference which table to use
+  double* _normalizationFactor;               //Used to internally reference which normalization factor
 
-  int _arrayPointer;                     //Pointer for moving through data array
-  int _fillArrayCount;                   //Used to check if the data array is filled
-  double _sum;                               //Returned value of _calculating()
-  double _smoothedValue;                     //Returned value of the filter
+  int _arrayPointer;                          //Pointer for moving through data array
+  int _fillArrayCount;                        //Used to check if the data array is filled
+  double _sum;                                //Returned value of _calculating()
+  double _smoothedValue;                      //Returned value of the filter
 
-  double _toBeSmoothedArray[13];           //Array that will be filled with the inputValues
-                                            //Set to thirteen since that is max the window size can go to
+  double _toBeSmoothedArray[13];              //Array that will be filled with the inputValues
+                                              //Set to thirteen since that is max the window size can go to
 
-    double _quadCubicSmooth[11][14] = {        //Contains the convolutes for each window size
-                                            //First column is normization factor
-      { 35, -3, 12, 17, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},    //Window size 5
-      { 21, -2, 3, 6, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0},      //Window size 7
-      { 231, -21, 14, 39, 54, 59, 0, 0, 0, 0, 0, 0, 0, 0},   //Window size 9
-      { 429, -36, 9, 44, 69, 84, 89, 0, 0, 0, 0, 0, 0, 0},   //Window size 11
-      { 143, -11, 0, 9, 16, 21, 24, 25, 0, 0, 0, 0, 0, 0},   //Window size 13
-      { 1105, -78, -13, 42, 87, 122, 147, 162, 167, 0, 0, 0, 0, 0},   //Window size 15
-      { 323, -21, -6, 7, 18, 27, 34, 39, 42, 43, 0, 0, 0, 0},        //Window size 17
-      { 2261, -136, -51, 24, 89, 144, 189, 224, 249, 264, 269, 0, 0, 0},    //Window size 19
-      { 3059, -171, -76, 9, 84, 149, 204, 249, 284, 309, 324, 329, 0, 0},   //Window size 21
-      { 8059, -42, -21, -2, 15, 30, 43, 54, 63, 70, 75, 78, 79, 0},            //Window size 23
-      { 5175, -254, -138, -33, 62, 147, 222, 287, 322, 387, 422, 447, 462, 467}   //Window size 25
+/* Contains the convolutes for each window size
+ * First column is normization factor*/
+    double _quadCubicSmooth[11][14] = {
+      { 35, -3, 12, 17, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},                          //Window size 5
+      { 21, -2, 3, 6, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0},                            //Window size 7
+      { 231, -21, 14, 39, 54, 59, 0, 0, 0, 0, 0, 0, 0, 0},                      //Window size 9
+      { 429, -36, 9, 44, 69, 84, 89, 0, 0, 0, 0, 0, 0, 0},                      //Window size 11
+      { 143, -11, 0, 9, 16, 21, 24, 25, 0, 0, 0, 0, 0, 0},                      //Window size 13
+      { 1105, -78, -13, 42, 87, 122, 147, 162, 167, 0, 0, 0, 0, 0},             //Window size 15
+      { 323, -21, -6, 7, 18, 27, 34, 39, 42, 43, 0, 0, 0, 0},                   //Window size 17
+      { 2261, -136, -51, 24, 89, 144, 189, 224, 249, 264, 269, 0, 0, 0},        //Window size 19
+      { 3059, -171, -76, 9, 84, 149, 204, 249, 284, 309, 324, 329, 0, 0},       //Window size 21
+      { 8059, -42, -21, -2, 15, 30, 43, 54, 63, 70, 75, 78, 79, 0},             //Window size 23
+      { 5175, -254, -138, -33, 62, 147, 222, 287, 322, 387, 422, 447, 462, 467} //Window size 25
     };
 
-    //Missing window size 17 because of scan line from paper
-    //There is no windowsize 5 for this table
+    /* Missing window size 17 because of scan line from paper
+     * There is no windowsize 5 for this table*/
     double _quarticQuinticSmooth[11][14] = {
       {0,0,0,0,0,0,0,0,0,0,0,0,0,0},
       {231,5,-30,75,131,0,0,0,0,0,0,0,0,0},
