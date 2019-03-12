@@ -1,0 +1,16 @@
+##############################
+# Syntax Coloring for SavLayFilter
+##############################
+
+##############################
+# Datatypes (KEYWORD1)
+##############################
+
+SavLayFilter	KEYWORD1
+
+##############################
+# Methods and Functions (KEYWORD2)
+##############################
+
+compute 	KEYWORD2
+resetValues	KEYWORD2

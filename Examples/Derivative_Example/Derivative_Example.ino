@@ -27,6 +27,6 @@ void loop() {
 
   Serial.print(outputValue);                                //Raw Value [Blue line]
   Serial.print(",");
-  Serial.println(firstDerivative.smoothing());              //First derivative of the sin wave
+  Serial.println(firstDerivative.compute());              //First derivative of the sin wave
 
 }

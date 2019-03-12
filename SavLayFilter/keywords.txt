@@ -1,3 +1,0 @@
-SavLayFilter	KEYWORD1
-quadCubicSmooth KEYWORD2
-resetValues	KEYWORD2

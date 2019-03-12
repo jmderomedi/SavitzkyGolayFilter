@@ -29,7 +29,7 @@ void loop() {
 
   Serial.print(outputValue);                                //Raw Value [Blue line]
   Serial.print(",");
-  Serial.print(smallFilter.smoothing());                    //Smoothed value of smaller window [Orange line]
+  Serial.print(smallFilter.compute());                    //Smoothed value of smaller window [Orange line]
   Serial.print(",");
-  Serial.println(largeFilter.smoothing());                  //Smoothed value of smaller window [Red line]
+  Serial.println(largeFilter.compute());                  //Smoothed value of smaller window [Red line]
 }
