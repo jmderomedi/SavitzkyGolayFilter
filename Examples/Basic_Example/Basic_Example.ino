@@ -3,6 +3,10 @@
    Creates a generic sin wave and adds noise from a floating analogpin
    Two filters are then run on it with a large windowsize and a small windowsize
    It is best to open Serial plotter for best results
+
+   For non-Teensy users, elapsedMillis is required
+   It can be downloaded from: https://github.com/pfeerick/elapsedMillis/archive/master.zip
+   
    Author: James Deromedi
    License: MIT License
 */
@@ -12,10 +16,7 @@
 float phase = 0.0;
 float twopi = 3.14159 * 2;
 elapsedMicros usec = 0;
-
 double outputValue;
-int windowsize = 5;
-int convoluteTable = 0;
 
 SavLayFilter smallFilter (&outputValue, 0, 5);             //Cubic smoothing with windowsize of 5
 SavLayFilter largeFilter (&outputValue, 0, 25);            //Cubic smoothing with windowsize of 25
